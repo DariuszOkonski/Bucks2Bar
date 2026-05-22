@@ -257,6 +257,23 @@ function updateChart() {
 }
 
 // ============================================
+// CHART DOWNLOAD
+// ============================================
+
+// Download chart as PNG
+function downloadChart() {
+  if (!chartInstance) {
+    alert('Please open the Chart tab first to generate the chart.');
+    return;
+  }
+
+  const link = document.createElement('a');
+  link.href = chartInstance.toBase64Image();
+  link.download = 'bucks2bar-chart.png';
+  link.click();
+}
+
+// ============================================
 // INITIALIZATION
 // ============================================
 
@@ -270,4 +287,9 @@ window.addEventListener('load', function () {
       initChart();
     }
   });
+
+  // Attach download button listener
+  document
+    .getElementById('downloadChartBtn')
+    .addEventListener('click', downloadChart);
 });
